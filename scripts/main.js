@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route } from 'react-router'; 
 import { createHistory } from 'history';
+import helpers from './helpers';
 
 /*import React from 'react';
 import ReactDOM from 'react-dom';
@@ -87,10 +88,11 @@ var Order = React.createClass({
 
 var StorePicker = React.createClass({
   render: function() {
+    // console.log(helpers);
     return (
       <form className='store-selector' >
         <h2>Please Enter A Store</h2>
-        <input type="text" ref="storeId" required />
+        <input type="text" ref="storeId" defaultValue={helpers.getFunName()} required />
         <input type="Submit"/>
       </form>
     )
