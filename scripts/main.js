@@ -87,10 +87,18 @@ var Order = React.createClass({
 // StorePicker
 
 var StorePicker = React.createClass({
+  goToStore: function (event) {
+    event.preventDefault();
+    //get Data from input
+    var storeId = this.refs.storeId.value;
+
+    //transition from storepicker to app
+    this.createHistory.pushState(null, '/store/' + storeId);
+  },
+
   render: function() {
-    // console.log(helpers);
     return (
-      <form className='store-selector' >
+      <form className='store-selector' onSubmit={this.goToStore} >
         <h2>Please Enter A Store</h2>
         <input type="text" ref="storeId" defaultValue={helpers.getFunName()} required />
         <input type="Submit"/>
