@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route } from 'react-router'; 
+import { Router, Route, History } from 'react-router'; 
 import { createHistory } from 'history';
 import helpers from './helpers';
+
 
 /*import React from 'react';
 import ReactDOM from 'react-dom';
@@ -87,13 +88,14 @@ var Order = React.createClass({
 // StorePicker
 
 var StorePicker = React.createClass({
+  mixins: [History],
   goToStore: function (event) {
     event.preventDefault();
     //get Data from input
     var storeId = this.refs.storeId.value;
 
     //transition from storepicker to app
-    this.createHistory.pushState(null, '/store/' + storeId);
+    this.history.pushState(null, '/store/' + storeId);
   },
 
   render: function() {
