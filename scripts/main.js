@@ -42,6 +42,44 @@ var App = React.createClass({
 
 });
 
+// Add Fish form
+
+var AddFishForm = React.createClass({
+
+  createFish: function(event) {
+    //stop the form fromm submitting
+    event.preventDefault();
+
+    //create object from form Data
+    var fish = {
+      name   : this.refs.name.value,
+      price : this.refs.price.value,
+      status : this.refs.status.value,
+      desc : this.refs.desc.value,
+      image : this.refs.image.value
+    }
+
+    console.log(fish);
+    //add fish to app state
+  },
+
+  render: function() {
+    return (
+      <form className="fish-edit" onSubmit={this.createFish}>
+        <input type="text" ref="name" placeholder="Fish Name"/>
+        <input type="text" ref="price" placeholder="Fish Price"/>
+        <select name="" ref="status" id="">
+          <option value="available">Fresh</option>
+          <option value="unavailable">Sold Out!</option>
+        </select>
+        <textarea name="" ref="desc" placeholder="Desc" ></textarea>
+        <input type="text" ref="image" placeholder="URL to Image" />
+        <button type="Submit" >+ Add Item</button>
+      </form>
+    )
+  }
+})
+
 /*Header*/
 var Header = React.createClass({
   render: function (){
@@ -66,7 +104,12 @@ var Inventory = React.createClass({
   render: function (){
     
     return (
-      <p>Header</p>
+
+      <div>
+        <h2>Inventory</h2>
+
+        <AddFishForm/>
+      </div>
     )
 
   }
