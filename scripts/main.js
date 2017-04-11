@@ -25,6 +25,12 @@ var routes = (
 
 ReactDOM.render(routes, document.getElementById('main'));*/
 
+//Firebase connection
+var Rebase = require('re-base');
+var base = Rebase.createClass('https://salt-bae-market.firebaseio.com');
+
+
+
 /*App */
 var App = React.createClass({
 
@@ -33,6 +39,14 @@ var App = React.createClass({
       fishes: {},
       order: {}
     }
+  },
+
+  componentDidMount: function() {
+    //takes react state and syncs with firebase
+    base.syncState(this.props.params.storeId + '/fishes', {
+      context: this,
+      state: 'fishes'
+    });
   },
 
   addToOrder: function(key) {
