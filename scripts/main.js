@@ -42,11 +42,19 @@ var App = React.createClass({
   },
 
   componentDidMount: function() {
-    //takes react state and syncs with firebase
+    // takes react state and syncs with firebase
     base.syncState(this.props.params.storeId + '/fishes', {
       context: this,
       state: 'fishes'
     });
+
+    var localStorageRef = localStorage.getItem('order-' + this.props.params.storeId);
+    if (localStorageRef) {
+      //update component to reflect what's in localStorage
+      this.setState({
+        order : JSON.parse(localStorageRef)
+      });
+    }
   },
 
   componentWillUpdate: function(nextProps, nextState) {
